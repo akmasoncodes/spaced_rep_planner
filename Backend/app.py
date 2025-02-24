@@ -42,5 +42,16 @@ def add_flashcard():
     db.session.commit()
     return jsonify({'message': 'Flashcard added successfully!'}), 201
 
+from flask import request
+
+@app.route('/api/flashcards/<int:id>', methods=['DELETE'])
+def delete_flashcard(id):
+    flashcard = Flashcard.query.get(id)
+    if flashcard:
+        db.session.delete(flashcard)
+        db.session.commit()
+        return '', 204  # No content, successful deletion
+    return {'message': 'Flashcard not found'}, 404
+
 if __name__ == '__main__':
     app.run(debug=True)
