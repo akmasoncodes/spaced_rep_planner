@@ -1,36 +1,92 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Wrapper around each flashcard and its delete button */
+.flashcard-container {
+  display: inline-block;
+  margin: 20px;
+}
+
+/* The flipping card itself */
+.flashcard {
+  width: 200px;
+  height: 300px;
+  position: relative;
+  transition: transform 0.5s;
+  transform-style: preserve-3d; /* necessary for 3D flip */
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+}
+
+.flashcard.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Front & Back Sides */
+.front,
+.back {
+  position: absolute; 
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.front {
+  background-color: #f9f9f9;
+  color: #333
+}
+
+.back {
+  background-color: #4caf50;
+  color: #333;
+  transform: rotateY(180deg); /* face the opposite way */
+}
+
+/* Headings in the card */
+.front h3,
+.back h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+/* Delete Button (now outside the flipping area) */
+.delete-button {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #d32f2f;
+}
+
+/* Existing Styles (optional, keep if you want them) */
+h1 {
+  color: #333;
+}
+
+p {
+  font-size: 1.2rem;
+  color: #555;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
 }
 
 .card {
